@@ -1,6 +1,37 @@
-// Fill in the missing code
+import React, { useEffect, useState } from 'react';
+import { Container } from 'react-bootstrap';
+import Axios from 'axios';
+import { toast } from 'react-toastify';
+import { Link } from 'react-router-dom';
 
 const Index = function ({user}) {
+
+  const [tours, setTours] = useState([]);
+
+  useEffect(() => {
+    (async () => {
+      await getTours();
+    })();
+  }, []);
+
+  const getTours = async () => {
+    const blogsResp = await Axios.get('/api/tours');
+    if (blogsResp.status === 200) setTours(blogsResp.data);
+  };
+
+  const deleteTour = async blog => {
+    try {
+      const resp = await Axios.post('/api/tours/delete', {
+        id: blog._id
+      });
+
+      if (resp.status === 200) toast("The tour was deleted successfully", {type: toast.TYPE.SUCCESS});
+
+      await getTours();
+    } catch (error) {
+      toast("There was an error deleting the tour", {type: toast.TYPE.ERROR});
+    }
+  };
 
   return (
     <Container className="my-5">

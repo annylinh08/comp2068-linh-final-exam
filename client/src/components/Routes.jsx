@@ -10,7 +10,6 @@ import Logout from './sessions/Logout';
 import Tours from './tours/Index';
 import NewTour from './tours/New';
 import EditTour from './tours/Edit';
-import { Fragment } from "react";
 
 function Routes ({user, setUser}) {
   return (
@@ -48,6 +47,9 @@ function Routes ({user, setUser}) {
 
           In your own words, please explain what is happening in the logic below.
           ANSWER HERE:
+          - The code below are using ternary logic 
+          - The render Props is used to pass down the default property and property that we want to define from other component in react. For instance, in the code below user is what we carry in from the app.js.
+          - If user is defined correctly (authenticated), it will direct user to the component they want to go. Otherwise, it will redirect them to the index page which is Home page.
         */
       }
       <Route exact path="/tours" render={
