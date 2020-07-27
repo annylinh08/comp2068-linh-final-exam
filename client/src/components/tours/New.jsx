@@ -10,7 +10,7 @@ const New = function () {
 
   const [inputs, setInputs] = useState({
     title: '',
-    tourType: '',
+    tourType: `I'm too young to die`,
     groupSize: '',
     date: ''
   });
